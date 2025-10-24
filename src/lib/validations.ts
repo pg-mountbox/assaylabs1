@@ -12,9 +12,16 @@ export const testSearchSchema = z.object({
 
 // Professor search filters
 export const professorSearchSchema = z.object({
-  expertise: z.string().optional(),
-  university: z.string().optional(),
   search: z.string().optional(),
+  productType: z.enum([
+    'Beverages',
+    'High fat products',
+    'cheese',
+    'powders',
+    'Dairy Ingredients',
+    'fermented products',
+    'Other'
+  ]).optional(),
 })
 
 // Test booking

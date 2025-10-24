@@ -120,6 +120,8 @@ model Professor {
   officeHours        String?
   consultationPrice  Decimal? @db.Decimal(10, 2)
   researchInterests  String?
+  productTypes       String[] // ["Beverages", "High fat products", etc.]
+  labName           String?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 
