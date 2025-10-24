@@ -110,7 +110,7 @@ async function seed() {
   ]
 
   await Promise.all(
-    testData.map(test => prisma.test.create({ data: test }))
+    testData.map(test => prisma.testDefinition.create({ data: test }))
   )
   console.log('✅ Inserted 6 tests')
 

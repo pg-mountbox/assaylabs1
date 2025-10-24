@@ -307,7 +307,7 @@ export function BookingConfirmation({ bookingId }: BookingConfirmationProps) {
               </div>
               <h4 className="font-semibold text-gray-900">3. Receive Results</h4>
               <p className="text-sm text-gray-600">
-                You'll receive detailed test results and a certificate via email.
+                You&apos;ll receive detailed test results and a certificate via email.
               </p>
             </div>
           </div>

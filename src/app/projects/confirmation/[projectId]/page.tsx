@@ -5,11 +5,12 @@ import { Button } from '@/components/ui/button'
 import { CheckCircle, Calendar, Clock, FileText } from 'lucide-react'
 
 interface ConfirmationPageProps {
-  params: { projectId: string }
+  params: Promise<{ projectId: string }>
 }
 
 export default async function ConfirmationPage({ params }: ConfirmationPageProps) {
-  const projectId = parseInt(params.projectId)
+  const { projectId: projectIdStr } = await params
+  const projectId = parseInt(projectIdStr)
   
   if (isNaN(projectId)) {
     notFound()
@@ -112,7 +113,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
                   <div>
                     <h4 className="font-medium text-gray-900">Expert Matching</h4>
                     <p className="text-sm text-gray-600">
-                      We'll identify the best laboratories and professors for your specific project needs.
+                      We&apos;ll identify the best laboratories and professors for your specific project needs.
                     </p>
                   </div>
                 </div>
@@ -123,7 +124,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
                   <div>
                     <h4 className="font-medium text-gray-900">Proposal & Timeline</h4>
                     <p className="text-sm text-gray-600">
-                      You'll receive detailed proposals with timelines, costs, and project plans within 2-3 business days.
+                      You&apos;ll receive detailed proposals with timelines, costs, and project plans within 2-3 business days.
                     </p>
                   </div>
                 </div>
@@ -134,7 +135,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
                   <div>
                     <h4 className="font-medium text-gray-900">Project Kickoff</h4>
                     <p className="text-sm text-gray-600">
-                      Once you approve a proposal, we'll facilitate the connection and project kickoff.
+                      Once you approve a proposal, we&apos;ll facilitate the connection and project kickoff.
                     </p>
                   </div>
                 </div>
@@ -153,7 +154,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
             <CardContent>
               <div className="space-y-2">
                 <p className="text-sm text-gray-600">
-                  If you have any questions about your project submission, please don't hesitate to contact us.
+                  If you have any questions about your project submission, please don&apos;t hesitate to contact us.
                 </p>
                 <div className="flex space-x-4">
                   <Button variant="outline" asChild>

@@ -53,7 +53,7 @@ export default function SignInPage() {
       }
     } catch (error) {
       console.error('Sign in error:', error)
-      alert(`An error occurred: ${error.message || 'Unknown error'}. Please try again.`)
+      alert(`An error occurred: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`)
     } finally {
       setIsLoading(false)
     }

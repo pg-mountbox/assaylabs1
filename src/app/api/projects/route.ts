@@ -74,6 +74,7 @@ export async function POST(request: NextRequest) {
         requirements: JSON.stringify(validatedData),
         status: 'pending',
         budget: null,
+        bookingId: null,
         userId: null, // For demo purposes - in real app, get from session
         professorId: null,
       },
@@ -86,9 +87,9 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error creating project:', error)
     
-    if (error.name === 'ZodError') {
+    if (error instanceof Error && error.name === 'ZodError') {
       return NextResponse.json(
-        { message: 'Validation error', errors: error.errors },
+        { message: 'Validation error', errors: (error as any).errors },
         { status: 400 }
       )
     }

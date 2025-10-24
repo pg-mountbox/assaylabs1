@@ -52,7 +52,7 @@ export function ProjectTypeSelector({ selectedType, onTypeChange }: ProjectTypeS
               Choose Your Project Type
             </h3>
             <p className="text-sm text-gray-600">
-              Select the type of research project you'd like to submit
+              Select the type of research project you&apos;d like to submit
             </p>
           </div>
           

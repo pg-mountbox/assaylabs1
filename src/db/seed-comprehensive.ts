@@ -369,7 +369,7 @@ async function seedComprehensive() {
 
   // Insert all tests
   await Promise.all(
-    allTests.map(test => prisma.test.create({ data: test }))
+    allTests.map(test => prisma.testDefinition.create({ data: test }))
   )
   console.log(`✅ Inserted ${allTests.length} tests`)
 

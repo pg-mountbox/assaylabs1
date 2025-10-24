@@ -25,7 +25,7 @@ export default function AboutPage() {
                 transparent, and efficient.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                By connecting food companies with university labs and professors, we're 
+                By connecting food companies with university labs and professors, we&apos;re 
                 accelerating innovation in the food industry and helping businesses make 
                 data-driven decisions about their products.
               </p>

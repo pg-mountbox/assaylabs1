@@ -26,17 +26,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         console.log('Processing OTP authentication...')
         
         try {
+          const email = credentials.email as string
           // Find or create user
           let user = await prisma.user.findUnique({
-            where: { email: credentials.email }
+            where: { email }
           })
 
           if (!user) {
-            console.log('Creating new user for:', credentials.email)
+            console.log('Creating new user for:', email)
             user = await prisma.user.create({
               data: {
-                email: credentials.email,
-                name: credentials.email.split('@')[0],
+                email,
+                name: email.split('@')[0],
                 companyName: 'Demo Company',
               }
             })

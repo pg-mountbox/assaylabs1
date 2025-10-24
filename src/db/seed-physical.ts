@@ -184,7 +184,7 @@ async function seedPhysicalTests() {
 
   // Insert all physical characterization tests
   await Promise.all(
-    physicalTests.map(test => prisma.test.create({ data: test }))
+    physicalTests.map(test => prisma.testDefinition.create({ data: test }))
   )
   console.log(`✅ Inserted ${physicalTests.length} Physical Characterization tests`)
 
