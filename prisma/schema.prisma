@@ -1,0 +1,196 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// NextAuth.js required models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  companyName   String?
+  contactInfo   Json?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts Account[]
+  sessions Session[]
+  bookings Booking[]
+}
+
+// Business models
+model Lab {
+  id           Int      @id @default(autoincrement())
+  name         String
+  university   String
+  location     String
+  contactEmail String
+  status       String   @default("active")
+  description  String?
+  imageUrl     String?
+  website      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  labTests     LabTest[]
+}
+
+model TestDefinition {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  category    String
+  subcategory String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  labTests    LabTest[]
+}
+
+model LabTest {
+  id             Int      @id @default(autoincrement())
+  testDefinitionId Int
+  labId          Int
+  price          Decimal  @db.Decimal(10, 2)
+  turnaroundDays Int
+  isAvailable    Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  testDefinition TestDefinition @relation(fields: [testDefinitionId], references: [id])
+  lab            Lab            @relation(fields: [labId], references: [id])
+  testBookings   TestBooking[]
+
+  @@unique([testDefinitionId, labId])
+}
+
+model Professor {
+  id                 Int      @id @default(autoincrement())
+  name               String
+  university         String
+  department         String
+  specialization     String
+  contactEmail       String
+  bio                String?
+  imageUrl           String?
+  officeHours        String?
+  consultationPrice  Decimal? @db.Decimal(10, 2)
+  researchInterests  String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  availability           ProfessorAvailability[]
+  consultationBookings   ConsultationBooking[]
+  projectEngagements    ProjectEngagement[]
+}
+
+model ProfessorAvailability {
+  id           Int      @id @default(autoincrement())
+  professorId  Int
+  startTime    DateTime
+  endTime      DateTime
+  durationMinutes Int
+  isBooked     Boolean  @default(false)
+  syncedAt     DateTime @default(now())
+
+  professor Professor @relation(fields: [professorId], references: [id])
+}
+
+model Booking {
+  id           Int      @id @default(autoincrement())
+  userId       String
+  bookingType  String   // 'test', 'consultation', 'project'
+  referenceId  Int      // Points to specific booking table
+  status       String   @default("pending") // 'pending', 'confirmed', 'completed', 'cancelled'
+  amount       Decimal? @db.Decimal(10, 2)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user                User                 @relation(fields: [userId], references: [id])
+  testBookings        TestBooking[]
+  consultationBookings ConsultationBooking[]
+}
+
+model TestBooking {
+  id        Int     @id @default(autoincrement())
+  bookingId Int
+  labTestId Int
+  sampleInfo Json?  // Sample details, shipping info, etc.
+  notes     String?
+
+  booking  Booking   @relation(fields: [bookingId], references: [id])
+  labTest  LabTest   @relation(fields: [labTestId], references: [id])
+}
+
+model ConsultationBooking {
+  id           Int      @id @default(autoincrement())
+  bookingId    Int
+  professorId  Int
+  startTime    DateTime
+  endTime      DateTime
+  durationMinutes Int
+  meetingLink  String?
+  notes        String?
+
+  booking    Booking   @relation(fields: [bookingId], references: [id])
+  professor  Professor @relation(fields: [professorId], references: [id])
+}
+
+model ProjectEngagement {
+  id          Int      @id @default(autoincrement())
+  bookingId   Int
+  professorId Int
+  title       String
+  description String
+  duration    String   // 'weeks', 'months'
+  budget      Decimal? @db.Decimal(10, 2)
+  status      String   @default("pending") // 'pending', 'accepted', 'in_progress', 'completed'
+  startDate   DateTime?
+  endDate     DateTime?
+
+  professor Professor @relation(fields: [professorId], references: [id])
+}

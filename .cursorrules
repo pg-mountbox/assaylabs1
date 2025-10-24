@@ -1,0 +1,21 @@
+{
+  "requiresApproval": true,
+  "style": {
+    "typescript": { "noAny": true, "preferReadonlyProps": true },
+    "imports": { "groupAndSort": true }
+  },
+  "project": {
+    "framework": "nextjs",
+    "version": "14+",
+    "rules": [
+      "Prefer React Server Components. Only add `\"use client\"` where event handlers or client hooks are needed.",
+      "Use Route Handlers in `app/api/**/route.ts` with `next/server`. Return typed JSON.",
+      "Data fetching: use `fetch()` with proper caching (`cache: 'force-cache'`, `revalidate`, or tag-based invalidation). Avoid client data fetching unless necessary.",
+      "Use Zod for request/response validation. No silent `any` or `unknown as T`.",
+      "Styling: Tailwind + shadcn/ui. Use `clsx` and `tailwind-merge`. No inline styles unless trivial.",
+      "Accessibility: semantic elements, labeled inputs, keyboard focus states.",
+      "Tests where logic exists: Vitest/Jest + React Testing Library. Write tests before risky refactors.",
+      "Commit format: Conventional Commits."
+    ]
+  }
+}
