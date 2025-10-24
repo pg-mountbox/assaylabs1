@@ -59,3 +59,48 @@ export const userProfileSchema = z.object({
     website: z.string().url().optional().or(z.literal('')),
   }).optional(),
 })
+
+// Project form schemas
+const baseProjectFields = {
+  detailedRequirements: z.string().min(20, 'Detailed requirements must be at least 20 characters'),
+  files: z.array(z.any()).optional(),
+}
+
+// Protein Analysis
+export const proteinAnalysisSchema = z.object({
+  productType: z.string().min(1, 'Product type is required'),
+  formFactor: z.enum(['Solid', 'Suspension', 'Liquid'], {
+    required_error: 'Form factor is required',
+  }),
+  ...baseProjectFields,
+})
+
+// Shelf Life Study
+export const shelfLifeStudySchema = z.object({
+  product: z.string().min(1, 'Product name is required'),
+  stabilityPeriod: z.number().positive('Stability period must be positive'),
+  stabilityUnit: z.enum(['days', 'weeks', 'months'], {
+    required_error: 'Stability unit is required',
+  }),
+  storageTemp: z.number(),
+  tempUnit: z.enum(['celsius', 'fahrenheit'], {
+    required_error: 'Temperature unit is required',
+  }),
+  ...baseProjectFields,
+})
+
+// Sensory Study
+export const sensoryStudySchema = z.object({
+  nature: z.enum(['Qualitative', 'Quantitative'], {
+    required_error: 'Nature is required',
+  }),
+  ...baseProjectFields,
+})
+
+// Others
+export const othersProjectSchema = z.object({
+  briefDescription: z.string().min(20, 'Brief description must be at least 20 characters'),
+  detailedRequirements: z.string().min(20, 'Detailed requirements must be at least 20 characters'),
+  previousAttempts: z.string().optional(),
+  files: z.array(z.any()).optional(),
+})

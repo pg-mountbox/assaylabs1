@@ -60,6 +60,7 @@ model User {
   accounts Account[]
   sessions Session[]
   bookings Booking[]
+  projectEngagements ProjectEngagement[]
 }
 
 // Business models
@@ -184,15 +185,20 @@ model ConsultationBooking {
 
 model ProjectEngagement {
   id          Int      @id @default(autoincrement())
-  bookingId   Int
-  professorId Int
+  bookingId   Int?
+  professorId Int?
+  userId      String?
   title       String
   description String
-  duration    String   // 'weeks', 'months'
+  requirements String? // JSON string for project requirements
+  duration    String?  // 'weeks', 'months'
   budget      Decimal? @db.Decimal(10, 2)
   status      String   @default("pending") // 'pending', 'accepted', 'in_progress', 'completed'
   startDate   DateTime?
   endDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  professor Professor @relation(fields: [professorId], references: [id])
+  professor Professor? @relation(fields: [professorId], references: [id])
+  user      User?      @relation(fields: [userId], references: [id])
 }
