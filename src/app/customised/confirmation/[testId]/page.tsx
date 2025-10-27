@@ -36,10 +36,10 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
               <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
             <h1 className="text-4xl font-display font-bold text-gray-900 tracking-tight">
-              Specialized Test Submitted Successfully!
+              Customised Test Submitted Successfully!
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Your specialized test request has been submitted and our team will review it shortly.
+              Your customised test request has been submitted and our team will review it shortly.
             </p>
           </div>
 
@@ -171,7 +171,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
           {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button asChild>
-                      <a href="/specialized/new">Submit Another Test</a>
+                      <a href="/customised/new">Submit Another Test</a>
                     </Button>
                     <Button variant="outline" asChild>
                       <a href="/dashboard">Go to Dashboard</a>
