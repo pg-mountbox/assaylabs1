@@ -68,7 +68,7 @@ export default function HomePage() {
               and professors for complex food industry challenges.
             </p>
             <Button asChild variant="outline" className="h-12 px-6 font-semibold border-2 hover:bg-purple-50">
-              <Link href="/specialized/new">Submit Test</Link>
+              <Link href="/customised/new">Submit Test</Link>
             </Button>
           </div>
         </div>

@@ -143,7 +143,7 @@ export function Header() {
                 Professors
               </Link>
               <Link 
-                href="/specialized/new" 
+                href="/customised/new" 
                 className="text-gray-600 hover:text-gray-900 font-medium px-4 py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
