@@ -28,7 +28,7 @@ export default function NewProjectPage() {
         })
       }
 
-      const response = await fetch('/api/projects', {
+      const response = await fetch('/api/specialized', {
         method: 'POST',
         body: formData,
       })
@@ -40,7 +40,7 @@ export default function NewProjectPage() {
       const result = await response.json()
       
       // Redirect to confirmation page
-      router.push(`/projects/confirmation/${result.projectId}`)
+      router.push(`/specialized/confirmation/${result.projectId}`)
     } catch (error) {
       console.error('Error submitting project:', error)
       alert('Failed to submit project. Please try again.')
@@ -70,10 +70,10 @@ export default function NewProjectPage() {
           {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-display font-bold text-gray-900 tracking-tight">
-              Research Project Submission
+              Specialized Test Submission
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Let us help solve your food challenges. Submit your research project and connect with expert laboratories and professors.
+              Let us help solve your food challenges. Submit your specialized test requirements and connect with expert laboratories and professors.
             </p>
           </div>
 

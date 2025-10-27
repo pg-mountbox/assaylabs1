@@ -54,12 +54,12 @@ export function Header() {
             >
               Professors
             </Link>
-            <Link 
-              href="/projects/new" 
-              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-            >
-              Research Projects
-            </Link>
+                    <Link
+                      href="/specialized/new"
+                      className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                    >
+                      Specialized Tests
+                    </Link>
             <Link 
               href="/about" 
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
@@ -143,11 +143,11 @@ export function Header() {
                 Professors
               </Link>
               <Link 
-                href="/projects/new" 
+                href="/specialized/new" 
                 className="text-gray-600 hover:text-gray-900 font-medium px-4 py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Research Projects
+                Specialized Tests
               </Link>
               <Link 
                 href="/about" 

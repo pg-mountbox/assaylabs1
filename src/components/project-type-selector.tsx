@@ -36,7 +36,7 @@ const projectTypes = [
   {
     id: 'others' as ProjectType,
     name: 'Others',
-    description: 'Custom research project',
+    description: 'Custom specialized test',
     icon: HelpCircle,
     color: 'bg-gray-500',
   },
@@ -49,10 +49,10 @@ export function ProjectTypeSelector({ selectedType, onTypeChange }: ProjectTypeS
         <div className="space-y-4">
           <div className="text-center">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Choose Your Project Type
+              Choose Your Test Type
             </h3>
             <p className="text-sm text-gray-600">
-              Select the type of research project you&apos;d like to submit
+              Select the type of specialized test you&apos;d like to submit
             </p>
           </div>
           

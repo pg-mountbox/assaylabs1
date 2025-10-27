@@ -54,9 +54,9 @@ export function OthersForm({ onSubmit, loading = false }: OthersFormProps) {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-xl">Project Details</CardTitle>
+        <CardTitle className="text-xl">Test Details</CardTitle>
         <p className="text-sm text-gray-600">
-          Tell us about your research project and what you need help with.
+          Tell us about your specialized test requirements and what you need help with.
         </p>
       </CardHeader>
       <CardContent>

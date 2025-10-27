@@ -71,7 +71,7 @@ export function ShelfLifeForm({ onSubmit, loading = false }: ShelfLifeFormProps)
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-xl">Shelf Life Study Project</CardTitle>
+        <CardTitle className="text-xl">Shelf Life Study Test</CardTitle>
         <p className="text-sm text-gray-600">
           Define your product stability testing requirements.
         </p>

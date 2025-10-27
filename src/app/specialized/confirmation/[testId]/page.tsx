@@ -5,19 +5,19 @@ import { Button } from '@/components/ui/button'
 import { CheckCircle, Calendar, Clock, FileText } from 'lucide-react'
 
 interface ConfirmationPageProps {
-  params: Promise<{ projectId: string }>
+  params: Promise<{ testId: string }>
 }
 
 export default async function ConfirmationPage({ params }: ConfirmationPageProps) {
-  const { projectId: projectIdStr } = await params
-  const projectId = parseInt(projectIdStr)
+  const { testId: testIdStr } = await params
+  const testId = parseInt(testIdStr)
   
-  if (isNaN(projectId)) {
+  if (isNaN(testId)) {
     notFound()
   }
 
   const project = await prisma.projectEngagement.findUnique({
-    where: { id: projectId },
+    where: { id: testId },
   })
 
   if (!project) {
@@ -36,10 +36,10 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
               <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
             <h1 className="text-4xl font-display font-bold text-gray-900 tracking-tight">
-              Project Submitted Successfully!
+              Specialized Test Submitted Successfully!
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Your research project has been submitted and our team will review it shortly.
+              Your specialized test request has been submitted and our team will review it shortly.
             </p>
           </div>
 
@@ -48,19 +48,19 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <FileText className="h-5 w-5" />
-                <span>Project Details</span>
+                <span>Test Details</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-medium text-gray-900">Project ID</h4>
+                  <h4 className="font-medium text-gray-900">Test ID</h4>
                   <p className="text-sm text-gray-600">#{project.id}</p>
                 </div>
                 <div>
-                  <h4 className="font-medium text-gray-900">Project Type</h4>
+                  <h4 className="font-medium text-gray-900">Test Type</h4>
                   <p className="text-sm text-gray-600 capitalize">
-                    {project.title.replace(' Project', '').replace(/([A-Z])/g, ' $1').trim()}
+                    {project.title.replace(' Test', '').replace(/([A-Z])/g, ' $1').trim()}
                   </p>
                 </div>
                 <div>
@@ -102,7 +102,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
                   <div>
                     <h4 className="font-medium text-gray-900">Review Process</h4>
                     <p className="text-sm text-gray-600">
-                      Our team will review your project requirements and match you with suitable laboratories and professors.
+                      Our team will review your test requirements and match you with suitable laboratories and professors.
                     </p>
                   </div>
                 </div>
@@ -113,7 +113,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
                   <div>
                     <h4 className="font-medium text-gray-900">Expert Matching</h4>
                     <p className="text-sm text-gray-600">
-                      We&apos;ll identify the best laboratories and professors for your specific project needs.
+                      We&apos;ll identify the best laboratories and professors for your specific test needs.
                     </p>
                   </div>
                 </div>
@@ -124,7 +124,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
                   <div>
                     <h4 className="font-medium text-gray-900">Proposal & Timeline</h4>
                     <p className="text-sm text-gray-600">
-                      You&apos;ll receive detailed proposals with timelines, costs, and project plans within 2-3 business days.
+                      You&apos;ll receive detailed proposals with timelines, costs, and test plans within 2-3 business days.
                     </p>
                   </div>
                 </div>
@@ -133,9 +133,9 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
                     <span className="text-xs font-medium text-blue-600">4</span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900">Project Kickoff</h4>
+                    <h4 className="font-medium text-gray-900">Test Kickoff</h4>
                     <p className="text-sm text-gray-600">
-                      Once you approve a proposal, we&apos;ll facilitate the connection and project kickoff.
+                      Once you approve a proposal, we&apos;ll facilitate the connection and test kickoff.
                     </p>
                   </div>
                 </div>
@@ -154,7 +154,7 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
             <CardContent>
               <div className="space-y-2">
                 <p className="text-sm text-gray-600">
-                  If you have any questions about your project submission, please don&apos;t hesitate to contact us.
+                  If you have any questions about your test submission, please don&apos;t hesitate to contact us.
                 </p>
                 <div className="flex space-x-4">
                   <Button variant="outline" asChild>
@@ -169,14 +169,14 @@ export default async function ConfirmationPage({ params }: ConfirmationPageProps
           </Card>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild>
-              <a href="/projects/new">Submit Another Project</a>
-            </Button>
-            <Button variant="outline" asChild>
-              <a href="/dashboard">Go to Dashboard</a>
-            </Button>
-          </div>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button asChild>
+                      <a href="/specialized/new">Submit Another Test</a>
+                    </Button>
+                    <Button variant="outline" asChild>
+                      <a href="/dashboard">Go to Dashboard</a>
+                    </Button>
+                  </div>
         </div>
       </div>
     </div>

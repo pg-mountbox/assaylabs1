@@ -69,7 +69,7 @@ export function ProteinAnalysisForm({ onSubmit, loading = false }: ProteinAnalys
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-xl">Protein Analysis Project</CardTitle>
+        <CardTitle className="text-xl">Protein Analysis Test</CardTitle>
         <p className="text-sm text-gray-600">
           Provide details about your protein analysis requirements.
         </p>

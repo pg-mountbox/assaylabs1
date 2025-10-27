@@ -53,7 +53,7 @@ export function SensoryStudyForm({ onSubmit, loading = false }: SensoryStudyForm
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-xl">Sensory Study Project</CardTitle>
+        <CardTitle className="text-xl">Sensory Study Test</CardTitle>
         <p className="text-sm text-gray-600">
           Define your sensory evaluation requirements.
         </p>
